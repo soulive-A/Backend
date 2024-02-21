@@ -72,5 +72,5 @@ jobs:
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/kyumin #
             sudo docker rm -f $(docker ps -qa) #
-            docker-compose up -d
+            docker compose up -d
             docker image prune -f
