@@ -9,6 +9,6 @@ public class MainController {
     @GetMapping("/api")
     public String apiTest() {
         System.out.println("@@@");
-        return "test@!!##@#@!";
+        return "ttest changed!!!!";
     }
 }
