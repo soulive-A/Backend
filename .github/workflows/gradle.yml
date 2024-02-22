@@ -57,8 +57,8 @@ jobs:
         # if: contains(github.ref, 'main')
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -f Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/soullive .
-          docker push ${{ secrets.DOCKER_USERNAME }}/soullive
+          docker build -f Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/practice .
+          docker push ${{ secrets.DOCKER_USERNAME }}/practice
 
       ## deploy to production
       - name: Deploy
@@ -70,7 +70,7 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           envs: GITHUB_SHA
           script: |
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/soullive #
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/practice #
             sudo docker rm -f $(docker ps -qa) #
             docker compose up -d
             docker image prune -f
