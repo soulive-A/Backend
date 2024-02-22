@@ -9,6 +9,6 @@ public class MainController {
     @GetMapping("/api")
     public String apiTest() {
         System.out.println("@@@");
-        return "commit test";
+        return "감사합니다.이것이 cicd이다 쏘울라이브 버전";
     }
 }
