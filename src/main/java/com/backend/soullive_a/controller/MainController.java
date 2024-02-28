@@ -9,7 +9,7 @@ public class MainController {
     @GetMapping("/health")
     public String apiTest() {
         System.out.println("health-check!");
-        return "health check! v2";
+        return "health check! v2.";
     }
 }
 
