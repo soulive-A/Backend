@@ -1,14 +1,12 @@
 # github repository Actions 페이지에 나타낼 이름
-name: soullive A CI/CD with Gradle
+name: soullive A CI with Gradle
 
 # event trigger
-# main, develop 브랜치에 push 시실행되는 트리거
+# main, develop 브랜치에  pr 생성시 실행되는 트리거
 on:
-  # 푸시했을 때 ci/cd
-  push:
-    branches: [ "main", "develop" ]
+  # pr 생성시 CI까지만 진행
   pull_request:
-
+    branches: [ "main", "develop" ]
 
 
 # permissions: write-all
@@ -50,24 +48,3 @@ jobs:
       - name: 🐧gradle build 중입니다.
         run: ./gradlew build
         shell: bash # ci는 여기까지
-
-      - name: 🐧docker image build 후 docker hub에 push합니다.
-        run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -f Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }} .
-          docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
-
-      ## deploy to production
-      - name:  docker hub에서 pull 후 deploy합니다.
-        uses: appleboy/ssh-action@master
-#        id: deploy-prod
-        with:
-          username: ${{ secrets.EC2_USERNAME }}
-          host: ${{ secrets.EC2_HOST }}
-          key: ${{ secrets.EC2_PRIVATE_KEY }}
-          envs: GITHUB_SHA
-          script: |
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
-            sudo docker rm -f $(docker ps -qa) 
-            docker compose up -d
-            docker image prune -f
