@@ -27,6 +27,8 @@ public class Model {
 
     private String agency;
 
+    private Float aiRate;
+
 
 
 }
