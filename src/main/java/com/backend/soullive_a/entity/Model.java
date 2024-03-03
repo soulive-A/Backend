@@ -6,6 +6,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Entity
 @Getter
 @Builder
@@ -17,13 +20,15 @@ public class Model {
     private Long modelId;
 
     private String modelName;
-    private Integer age;
 
-//    @Builder
-//    public Model(Long modelId,String modelName,Integer age) {
-//        this.modelId = modelId;
-//        this.modelName = modelName;
-//        this.age = age;
-//    }
+    private LocalDate birth;
+
+    private String job;
+
+    private String info;
+
+    private String agency;
+
+
 
 }
