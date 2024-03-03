@@ -1,16 +1,14 @@
 package com.backend.soullive_a.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity(name = "RANGE")
+@Entity
+@Table(name = "TARGETRANGE")
 @Builder
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Range {
     @Id
     @GeneratedValue
@@ -21,6 +19,6 @@ public class Range {
     @JoinColumn(name = "PRODUCT_ID", nullable = false)
     private Product product;
 
-    @Column(name = "RANGE", nullable = false)
-    private String rangeType;
+    @Column(name = "RANGE_VALUE", nullable = false)
+    private String range;
 }
