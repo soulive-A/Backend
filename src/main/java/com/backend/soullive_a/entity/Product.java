@@ -11,29 +11,27 @@ import org.hibernate.annotations.DynamicInsert;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @Entity
 @Table(name = "PRODUCT")
 @Builder
 @Getter
-@DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue
-    @Column(name = "PRODUCT_ID")
+    @Column(name = "PRODUCT_ID", nullable = false)
     private Long id;
 
-    @Column(name = "COMPANY", length = 100)
+    @Column(name = "COMPANY", nullable = false)
     private String company;
 
-    @Column(name = "BRAND", length = 100)
+    @Column(name = "BRAND", nullable = true)
     private String brand;
 
-    @Column(name = "PRODUCT", length = 100)
+    @Column(name = "PRODUCT", nullable = false)
     private String product;
 
-    @Column(name = "CHARACTERISTIC")
+    @Column(name = "CHARACTERISTIC", nullable = false)
     private String characteristic;
 }
