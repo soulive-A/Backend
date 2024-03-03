@@ -12,9 +12,10 @@ import lombok.*;
 public class ModelRecentAdvertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long modelRecentAdvertisementId;
+    @Column(name = "MODEL_RECENT_ADVERTISEMENT_ID", nullable = false)
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "model_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MODEL_ID")
     private Model model;
 }

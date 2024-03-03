@@ -12,11 +12,8 @@ public class ModelIntroduction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @OneToOne
-    @JoinColumn(name = "model_id") //식별
+    @JoinColumn(name = "MODEL_ID") //식별 관계
     private Model model;
 
-//    @Builder
-//    public ModelIntroduction(Model model) {
-//        this.model = model;
-//    }
+
 }

@@ -13,17 +13,14 @@ public class ModelImageKeyword {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long modelImageKeywordId;
+    @Column(name = "MODEL_IMAGE_KEYWORD_ID", nullable = false)
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "model_id") //비식별인데..
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MODEL_ID")
     private Model model;
     private String keyword;
 
 
-//    @Builder
-//    public ModelImageKeyword(Model model, String keyword) {
-//        this.model = model;
-//        this.keyword = keyword;
-//    }
+
 }

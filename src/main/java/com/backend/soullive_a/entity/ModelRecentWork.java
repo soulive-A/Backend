@@ -12,7 +12,8 @@ import lombok.*;
 public class ModelRecentWork {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long modelRecentWorkId;
+    @Column(name = "MODEL_RECENT_WORK_ID", nullable = false)
+    private Long id;
 
     private Integer year;
     private String category;
@@ -21,7 +22,7 @@ public class ModelRecentWork {
     private String role;
     private Boolean isMainActor;
 
-    @ManyToOne
-    @JoinColumn(name = "model_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MODEL_ID")
     private Model model;
 }

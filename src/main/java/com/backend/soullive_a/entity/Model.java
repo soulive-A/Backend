@@ -1,9 +1,6 @@
 package com.backend.soullive_a.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -17,7 +14,8 @@ import java.util.Date;
 public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long modelId;
+    @Column(name = "MODEL_ID")
+    private Long id;
 
     private String modelName;
 
