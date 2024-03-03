@@ -7,9 +7,6 @@ on:
   # 푸시했을 때 ci/cd
   push:
     branches: [ "main", "develop" ]
-  pull_request:
-
-
 
 # permissions: write-all
 
