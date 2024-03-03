@@ -19,8 +19,12 @@ import org.hibernate.annotations.DynamicInsert;
 public class ProductImage {
     @Id
     @GeneratedValue
-    @Column(name = "PRODUCT_ID")
+    @Column(name = "PRODUCT_IMAGE_ID")
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_ID", nullable = false)
+    private Product product;
 
     @Column(name = "PRODUCT_IMAGE")
     private String productImage;

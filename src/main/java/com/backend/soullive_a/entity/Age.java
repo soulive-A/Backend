@@ -23,6 +23,10 @@ public class Age {
     @Column(name = "AGE_ID")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_ID", nullable = false)
+    private Product product;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "AGE_TYPE")
     private AgeType ageType;

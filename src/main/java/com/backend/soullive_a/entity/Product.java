@@ -31,24 +31,9 @@ public class Product {
     @Column(name = "BRAND", length = 100)
     private String brand;
 
-    @OneToMany(mappedBy = "PRODUCT")
-    private List<BrandImage> brandImages = new ArrayList<>();
-
     @Column(name = "PRODUCT", length = 100)
     private String product;
 
     @Column(name = "CHARACTERISTIC")
     private String characteristic;
-
-    @OneToMany(mappedBy = "PRODUCT_IMAGE")
-    private List<ProductImage> productImages = new ArrayList<>();
-
-    @OneToMany(mappedBy = "GENDER")
-    private List<Gender> genders = new ArrayList<>();
-
-    @OneToMany(mappedBy = "AGE")
-    private List<Age> ages = new ArrayList<>();
-
-    @OneToMany(mappedBy = "range")
-    private List<Range> ranges = new ArrayList<>();
 }

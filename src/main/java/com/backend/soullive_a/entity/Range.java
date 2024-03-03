@@ -21,6 +21,10 @@ public class Range {
     @Column(name = "RANGE_ID")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_ID", nullable = false)
+    private Product product;
+
     @Column(name = "RANGE")
     private String rangeType;
 }
