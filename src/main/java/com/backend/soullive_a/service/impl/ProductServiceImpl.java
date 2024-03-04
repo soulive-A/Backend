@@ -31,19 +31,19 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public ProductResponse createProduct(CreateProductRequest request) {
         Product product = Product.builder()
-                .company(request.company())
-                .brand(request.brand())
-                .product(request.product())
-                .characteristic(request.characteristic())
-                .build();
+            .company(request.company())
+            .brand(request.brand())
+            .product(request.product())
+            .characteristic(request.characteristic())
+            .build();
         productRepository.save(product);
 
         List<BrandImage> brandImages = new ArrayList<>();
         for (String image : request.brandImage()) {
             BrandImage brandImage = BrandImage.builder()
-                    .product(product)
-                    .brandImage(image)
-                    .build();
+                .product(product)
+                .brandImage(image)
+                .build();
             brandImages.add(brandImage);
             brandImageRepository.save(brandImage);
         }
@@ -51,9 +51,9 @@ public class ProductServiceImpl implements ProductService {
         List<ProductImage> productImages = new ArrayList<>();
         for (String image : request.productImage()) {
             ProductImage productImage = ProductImage.builder()
-                    .product(product)
-                    .productImage(image)
-                    .build();
+                .product(product)
+                .productImage(image)
+                .build();
             productImages.add(productImage);
             productImageRepository.save(productImage);
         }
@@ -61,9 +61,9 @@ public class ProductServiceImpl implements ProductService {
         List<Gender> genders = new ArrayList<>();
         for (GenderType genderType : request.gender()) {
             Gender gender = Gender.builder()
-                    .product(product)
-                    .gender(genderType)
-                    .build();
+                .product(product)
+                .gender(genderType)
+                .build();
             genders.add(gender);
             genderRepository.save(gender);
         }
@@ -71,9 +71,9 @@ public class ProductServiceImpl implements ProductService {
         List<Age> ages = new ArrayList<>();
         for (AgeType ageType : request.age()) {
             Age age = Age.builder()
-                    .product(product)
-                    .age(ageType)
-                    .build();
+                .product(product)
+                .age(ageType)
+                .build();
             ages.add(age);
             ageRepository.save(age);
         }
@@ -81,26 +81,28 @@ public class ProductServiceImpl implements ProductService {
         List<Range> ranges = new ArrayList<>();
         for (String rangeType : request.range()) {
             Range range = Range.builder()
-                    .product(product)
-                    .range(rangeType)
-                    .build();
+                .product(product)
+                .range(rangeType)
+                .build();
             ranges.add(range);
             rangeRepository.save(range);
         }
-        return ProductResponse.fromProduct(product, brandImages, productImages, genders, ages, ranges);
+        return ProductResponse.fromProduct(product, brandImages, productImages, genders, ages,
+            ranges);
     }
 
     @Override
     @Transactional(readOnly = true)
     public ProductResponse getProduct(Long productId) {
         Product product = productRepository.findById(productId)
-                .orElseThrow();
+            .orElseThrow();
         List<BrandImage> brandImages = brandImageRepository.findAllByProductId(productId);
         List<ProductImage> productImages = productImageRepository.findAllByProductId(productId);
         List<Gender> genders = genderRepository.findAllByProductId(productId);
         List<Age> ages = ageRepository.findAllByProductId(productId);
         List<Range> ranges = rangeRepository.findAllByProductId(productId);
-        return ProductResponse.fromProduct(product, brandImages, productImages, genders, ages, ranges);
+        return ProductResponse.fromProduct(product, brandImages, productImages, genders, ages,
+            ranges);
     }
 
     @Override
@@ -110,12 +112,21 @@ public class ProductServiceImpl implements ProductService {
         List<ProductResponse> productResponses = new ArrayList<>();
         for (Product product : products) {
             List<BrandImage> brandImages = brandImageRepository.findAllByProductId(product.getId());
-            List<ProductImage> productImages = productImageRepository.findAllByProductId(product.getId());
+            List<ProductImage> productImages = productImageRepository.findAllByProductId(
+                product.getId());
             List<Gender> genders = genderRepository.findAllByProductId(product.getId());
             List<Age> ages = ageRepository.findAllByProductId(product.getId());
             List<Range> ranges = rangeRepository.findAllByProductId(product.getId());
-            productResponses.add(ProductResponse.fromProduct(product, brandImages, productImages, genders, ages, ranges));
+            productResponses.add(
+                ProductResponse.fromProduct(product, brandImages, productImages, genders, ages,
+                    ranges));
         }
         return productResponses;
+    }
+
+    @Override
+    @Transactional
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
     }
 }
