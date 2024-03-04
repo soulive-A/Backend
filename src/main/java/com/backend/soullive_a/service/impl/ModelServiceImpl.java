@@ -8,6 +8,7 @@ import com.backend.soullive_a.repository.ModelRepository;
 import com.backend.soullive_a.service.ModelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +33,7 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
+    @Transactional
     public ModelResponse createModel(ModelRequest request) {
         // 중복 검사 로직 추가
          Model model = modelRepository.save(Model.builder()
