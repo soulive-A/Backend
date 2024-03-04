@@ -15,8 +15,8 @@ public class ModelServiceImpl implements ModelService {
     private final ModelRepository modelRepository;
 
     @Override
-    public ModelResponse getModel(ModelRequest request) {
-         Model model = modelRepository.findById(request.modelId())
+    public ModelResponse getModel(Long modelId) {
+         Model model = modelRepository.findById(modelId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 아이디"));
 
         return ModelResponse.builder()
@@ -27,6 +27,30 @@ public class ModelServiceImpl implements ModelService {
                 .info(model.getInfo())
                 .agency(model.getAgency())
                 .aiRate(model.getAiRate())
+                .build();
+    }
+
+    @Override
+    public ModelResponse createModel(ModelRequest request) {
+        // 중복 검사 로직 추가
+        System.out.println("S?");
+        modelRepository.save(Model.builder()
+                .modelName(request.modelName())
+                .birth(request.birth())
+                .job(request.job())
+                .info(request.info())
+                .agency(request.agency())
+                .aiRate(request.aiRate())
+                .build());
+
+        return ModelResponse.builder()
+                .modelId(99L) // 수정해야함. 일단 무시.
+                .modelName(request.modelName())
+                .birth(request.birth())
+                .job(request.job())
+                .info(request.info())
+                .agency(request.agency())
+                .aiRate(request.aiRate())
                 .build();
     }
 
