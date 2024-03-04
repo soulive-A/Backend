@@ -48,7 +48,7 @@ public record ProductResponse(
 
         return ProductResponse.builder()
                 .productId(product.getId())
-                .company(product.getProduct())
+                .company(product.getCompany())
                 .brand(product.getBrand())
                 .brandImages(brandImages)
                 .product(product.getProduct())
