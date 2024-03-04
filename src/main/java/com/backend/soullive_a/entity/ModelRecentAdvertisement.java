@@ -8,7 +8,6 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-
 public class ModelRecentAdvertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +15,6 @@ public class ModelRecentAdvertisement {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MODEL_ID")
+    @JoinColumn(name = "MODEL_ID", nullable = false)
     private Model model;
 }

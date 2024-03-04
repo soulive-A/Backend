@@ -17,10 +17,9 @@ public class ModelImageKeyword {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MODEL_ID")
+    @Column(name = "MODEL", nullable = false)
     private Model model;
+
+    @Column(name = "KEYWORD", nullable = false)
     private String keyword;
-
-
-
 }
