@@ -1,4 +1,4 @@
-package com.backend.soullive_a.entity;
+package com.backend.soullive_a.entity.model;
 
 import jakarta.persistence.*;
 import lombok.*;

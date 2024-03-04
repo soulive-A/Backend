@@ -1,5 +1,6 @@
-package com.backend.soullive_a.entity;
+package com.backend.soullive_a.entity.model.introduction;
 
+import com.backend.soullive_a.entity.model.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
