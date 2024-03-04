@@ -25,7 +25,7 @@ public class Model {
     @Column(name = "JOB", nullable = false)
     private String job;
 
-    @Column(name = "INFO", nullable = false)
+    @Column(name = "INFO")
     private String info;
 
     @Column(name = "AGENCY", nullable = false)
