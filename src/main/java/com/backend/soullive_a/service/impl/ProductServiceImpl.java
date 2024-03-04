@@ -18,7 +18,6 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
@@ -31,7 +30,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public ProductResponse createProduct(CreateProductRequest request) {
-        log.info("productservice 들어옴");
         Product product = Product.builder()
                 .company(request.company())
                 .brand(request.brand())
@@ -93,7 +91,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public ProductResponse getProduct(Long productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow();
@@ -106,7 +104,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ProductResponse> getAllProduct() {
         List<Product> products = productRepository.findAll();
         List<ProductResponse> productResponses = new ArrayList<>();
