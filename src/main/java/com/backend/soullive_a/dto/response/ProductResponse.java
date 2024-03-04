@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Builder
-public record CreateProductResponse(
+public record ProductResponse(
         Long productId,
         String company,
         String brand,
@@ -19,7 +19,7 @@ public record CreateProductResponse(
         List<AgeResponse> ages,
         List<RangeResponse> ranges
 ) {
-    public static CreateProductResponse fromProduct(
+    public static ProductResponse fromProduct(
             Product product,
             List<BrandImage> brandImage,
             List<ProductImage> productImage,
@@ -46,7 +46,7 @@ public record CreateProductResponse(
                 .map(range -> new RangeResponse(range.getId(), range.getRange()))
                 .collect(Collectors.toList());
 
-        return CreateProductResponse.builder()
+        return ProductResponse.builder()
                 .productId(product.getId())
                 .company(product.getProduct())
                 .brand(product.getBrand())

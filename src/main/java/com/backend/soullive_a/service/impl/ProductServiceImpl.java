@@ -3,7 +3,7 @@ package com.backend.soullive_a.service.impl;
 import com.backend.soullive_a.constant.AgeType;
 import com.backend.soullive_a.constant.GenderType;
 import com.backend.soullive_a.dto.request.CreateProductRequest;
-import com.backend.soullive_a.dto.response.CreateProductResponse;
+import com.backend.soullive_a.dto.response.ProductResponse;
 import com.backend.soullive_a.entity.*;
 import com.backend.soullive_a.repository.*;
 import com.backend.soullive_a.service.ProductService;
@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public CreateProductResponse createProduct(CreateProductRequest request){
+    public ProductResponse createProduct(CreateProductRequest request) {
         log.info("productservice 들어옴");
         Product product = Product.builder()
                 .company(request.company())
@@ -89,19 +89,35 @@ public class ProductServiceImpl implements ProductService {
             ranges.add(range);
             rangeRepository.save(range);
         }
-        return CreateProductResponse.fromProduct(product, brandImages, productImages, genders, ages, ranges);
+        return ProductResponse.fromProduct(product, brandImages, productImages, genders, ages, ranges);
     }
 
     @Override
     @Transactional
-    public CreateProductResponse getProduct(Long productId) {
-        Product product=productRepository.findById(productId)
+    public ProductResponse getProduct(Long productId) {
+        Product product = productRepository.findById(productId)
                 .orElseThrow();
         List<BrandImage> brandImages = brandImageRepository.findAllByProductId(productId);
         List<ProductImage> productImages = productImageRepository.findAllByProductId(productId);
         List<Gender> genders = genderRepository.findAllByProductId(productId);
         List<Age> ages = ageRepository.findAllByProductId(productId);
-        List<Range> ranges=rangeRepository.findAllByProductId(productId);
-        return CreateProductResponse.fromProduct(product, brandImages, productImages, genders, ages, ranges);
+        List<Range> ranges = rangeRepository.findAllByProductId(productId);
+        return ProductResponse.fromProduct(product, brandImages, productImages, genders, ages, ranges);
+    }
+
+    @Override
+    @Transactional
+    public List<ProductResponse> getAllProduct() {
+        List<Product> products = productRepository.findAll();
+        List<ProductResponse> productResponses = new ArrayList<>();
+        for (Product product : products) {
+            List<BrandImage> brandImages = brandImageRepository.findAllByProductId(product.getId());
+            List<ProductImage> productImages = productImageRepository.findAllByProductId(product.getId());
+            List<Gender> genders = genderRepository.findAllByProductId(product.getId());
+            List<Age> ages = ageRepository.findAllByProductId(product.getId());
+            List<Range> ranges = rangeRepository.findAllByProductId(product.getId());
+            productResponses.add(ProductResponse.fromProduct(product, brandImages, productImages, genders, ages, ranges));
+        }
+        return productResponses;
     }
 }
