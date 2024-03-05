@@ -9,9 +9,9 @@ import lombok.Builder;
 
 @Builder
 public record ModelRecentAdvertisementResponse(
-//        Long id,
+        String imageUrl,
         Integer year,
         String brand
-//        Model model
+
 ) {
 }

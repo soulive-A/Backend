@@ -62,12 +62,12 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
         for (ModelRecentWork modelRecentWork : modelRecentWorks) {
             modelRecentWorkResponse.add(
                     ModelRecentWorkResponse.builder()
+                            .imageUrl(modelRecentWork.getImageUrl())
                             .year(modelRecentWork.getYear())
                             .category(modelRecentWork.getCategory())
                             .title(modelRecentWork.getTitle())
                             .genre(modelRecentWork.getGenre())
                             .role(modelRecentWork.getRole())
-                            .isMainActor(modelRecentWork.getIsMainActor())
                             .build()
             );
         }
@@ -75,6 +75,7 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
         for (ModelRecentAdvertisement modelRecentAdvertisement : modelRecentAdvertisements) {
             modelRecentAdvertisementResponse.add(
                     ModelRecentAdvertisementResponse.builder()
+                            .imageUrl(modelRecentAdvertisement.getImageUrl())
                             .year(modelRecentAdvertisement.getYear())
                             .brand(modelRecentAdvertisement.getBrand())
                             .build()
@@ -130,12 +131,12 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
         // ModelRecentWorkRequest 엔티티 각각 저장
         for (ModelRecentWorkRequest modelRecentWorkRequest : request.modelRecentWorks()) {
             ModelRecentWork modelRecentWork = ModelRecentWork.builder()
+                    .imageUrl(modelRecentWorkRequest.imageUrl())
                     .year(modelRecentWorkRequest.year())
                     .category(modelRecentWorkRequest.category())
                     .title(modelRecentWorkRequest.title())
                     .genre(modelRecentWorkRequest.genre())
                     .role(modelRecentWorkRequest.role())
-                    .isMainActor(modelRecentWorkRequest.isMainActor())
                     .model(model)
                     .build();
 
@@ -143,12 +144,12 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
 
             // ModelRecentWorkResponse 생성
             ModelRecentWorkResponse modelRecentWorkResponse = ModelRecentWorkResponse.builder()
+                    .imageUrl(modelRecentWorkRequest.imageUrl())
                     .year(modelRecentWorkRequest.year())
                     .category(modelRecentWorkRequest.category())
                     .title(modelRecentWorkRequest.title())
                     .genre(modelRecentWorkRequest.genre())
                     .role(modelRecentWorkRequest.role())
-                    .isMainActor(modelRecentWorkRequest.isMainActor())
                     .build();
 
             modelRecentWorkList.add(modelRecentWorkResponse);
@@ -157,6 +158,7 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
         // modelRecentAdvertisementRepository 엔티티 각각 저장
         for (ModelRecentAdvertisementRequest modelRecentAdvertisementRequest : request.modelRecentAdvertisements()) {
             ModelRecentAdvertisement modelRecentAdvertisement = ModelRecentAdvertisement.builder()
+                    .imageUrl(modelRecentAdvertisementRequest.imageUrl())
                     .year(modelRecentAdvertisementRequest.year())
                     .brand(modelRecentAdvertisementRequest.brand())
                     .model(model)
@@ -166,6 +168,7 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
 
             // ModelRecentAdvertisementResponse 생성
             ModelRecentAdvertisementResponse modelRecentAdvertisementResponse = ModelRecentAdvertisementResponse.builder()
+                    .imageUrl(modelRecentAdvertisementRequest.imageUrl())
                     .year(modelRecentAdvertisementRequest.year())
                     .brand(modelRecentAdvertisementRequest.brand())
                     .build();
