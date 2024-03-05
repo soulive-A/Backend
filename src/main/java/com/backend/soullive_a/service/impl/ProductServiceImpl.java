@@ -38,8 +38,6 @@ public class ProductServiceImpl implements ProductService {
     public ProductResponse createProduct(CreateProductRequest request) {
         User user = entityManager.find(User.class, 1L);
 
-        log.info(user.getId()+"서비스");
-
         Product product = Product.builder()
                 .user(user)
                 .company(request.company())
