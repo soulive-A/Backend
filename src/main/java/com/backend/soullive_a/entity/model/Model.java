@@ -17,8 +17,10 @@ public class Model {
     @Column(name = "MODEL_ID", nullable = false)
     private Long id;
 
+
     @Column(name = "IMAGE_URL", nullable = false)
     private String imageUrl;
+
 
     @Column(name = "MODEL_NAME", nullable = false)
     private String modelName;
@@ -26,8 +28,10 @@ public class Model {
     @Column(name = "BIRTH", nullable = false)
     private LocalDate birth;
 
+
     @Column(name = "AGE", nullable = false)
     private String age;
+
 
     @Column(name = "JOB", nullable = false)
     private String job;

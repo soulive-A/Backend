@@ -1,3 +1,4 @@
+
 -- 모델1 김희애
 INSERT INTO soullive.model (model_id, model_name, birth, age, job, info, agency, ai_rate, image_url)
 VALUES (1, '김희애', '1967-04-23', '56세', '텔런트/영화배우', '', 'YG 엔터테인먼트', 4.0, 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/heeae_profile.png');
@@ -26,3 +27,4 @@ VALUES
     (1, 2019, 1, 'LG 프라엘', 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/heeae_recentadvertisement1.png'),
     (2, 2021, 1, '트렌비', 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/heeae_recentadvertisement2.png'),
     (3, 2024, 1, '우리은행 투체어스', 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/heeae_recentadvertisement3.png');
+

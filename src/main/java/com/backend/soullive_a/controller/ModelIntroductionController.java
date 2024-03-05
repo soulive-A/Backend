@@ -1,3 +1,4 @@
+
 package com.backend.soullive_a.controller;
 
 import com.backend.soullive_a.dto.request.ModelIntroduceRequest;
@@ -31,6 +32,7 @@ public class ModelIntroductionController {
                 .build();
     }
 
+
 //    @PostMapping("/{modelId}")
 //    public BaseResponse<ModelIntroductionResponse> createModelIntroduction(
 //            @PathVariable Long modelId,
@@ -42,4 +44,6 @@ public class ModelIntroductionController {
 //                .data(modelIntroductionService.createModelIntroduction(request, modelId))
 //                .build();
 //    }
+
 }
+

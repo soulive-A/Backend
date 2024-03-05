@@ -12,7 +12,6 @@ public record ModelResponse(
         String modelName,
         LocalDate birth,
         String age,
-
         String job,
         String info,
         String agency,

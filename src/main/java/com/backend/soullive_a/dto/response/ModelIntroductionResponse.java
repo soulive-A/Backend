@@ -9,18 +9,9 @@ import java.util.List;
 
 @Builder
 public record ModelIntroductionResponse(
+
         List<String> modelImageKeywords,
         List<ModelRecentWorkResponse> modelRecentWorks,
         List<ModelRecentAdvertisementResponse> modelRecentAdvertisements
 ) {
-//    public static ModelIntroductionResponse transfromToDto(
-//            List<ModelImageKeyword> modelImageKeywords,
-//            List<ModelRecentWork> modelRecentWorks,
-//            List<ModelRecentAdvertisement> modelRecentAdvertisements) {
-//        return ModelIntroductionResponse.builder()
-//                .modelImageKeywords(modelImageKeywords)
-//                .modelRecentWorks(modelRecentWorks)
-//                .modelRecentAdvertisements(modelRecentAdvertisements)
-//                .build();
-//    }
 }

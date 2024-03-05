@@ -1,3 +1,4 @@
+
 package com.backend.soullive_a.service;
 
 import com.backend.soullive_a.dto.request.ModelIntroduceRequest;
@@ -10,3 +11,4 @@ public interface ModelIntroductionService {
 
     public ModelIntroductionResponse createModelIntroduction(ModelIntroduceRequest request, Long modelId);
 }
+
