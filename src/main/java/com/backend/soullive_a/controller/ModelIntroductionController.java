@@ -31,15 +31,15 @@ public class ModelIntroductionController {
                 .build();
     }
 
-    @PostMapping("/{modelId}")
-    public BaseResponse<ModelIntroductionResponse> createModelIntroduction(
-            @PathVariable Long modelId,
-            @RequestBody @Valid ModelIntroduceRequest request) {
-        return BaseResponse.<ModelIntroductionResponse>builder()
-                .isSuccess(true)
-                .code(2006)
-                .message("모델소개 정보 생성에 성공했습니다.")
-                .data(modelIntroductionService.createModelIntroduction(request, modelId))
-                .build();
-    }
+//    @PostMapping("/{modelId}")
+//    public BaseResponse<ModelIntroductionResponse> createModelIntroduction(
+//            @PathVariable Long modelId,
+//            @RequestBody @Valid ModelIntroduceRequest request) {
+//        return BaseResponse.<ModelIntroductionResponse>builder()
+//                .isSuccess(true)
+//                .code(2006)
+//                .message("모델소개 정보 생성에 성공했습니다.")
+//                .data(modelIntroductionService.createModelIntroduction(request, modelId))
+//                .build();
+//    }
 }
