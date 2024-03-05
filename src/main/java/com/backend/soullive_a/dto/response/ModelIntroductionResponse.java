@@ -9,8 +9,18 @@ import java.util.List;
 
 @Builder
 public record ModelIntroductionResponse(
-        List<ModelImageKeyword> modelImageKeywords,
-        List<ModelRecentWork> modelRecentWorks,
-        List<ModelRecentAdvertisement> modelRecentAdvertisements
+        List<ModelImageKeywordResponse> modelImageKeywords,
+        List<ModelRecentWorkResponse> modelRecentWorks,
+        List<ModelRecentAdvertisementResponse> modelRecentAdvertisements
 ) {
+//    public static ModelIntroductionResponse fromModelIntroduction(
+//            List<ModelImageKeyword> modelImageKeywords,
+//            List<ModelRecentWork> modelRecentWorks,
+//            List<ModelRecentAdvertisement> modelRecentAdvertisements) {
+//        return ModelIntroductionResponse.builder()
+//                .modelImageKeywords(modelImageKeywords)
+//                .modelRecentWorks(modelRecentWorks)
+//                .modelRecentAdvertisements(modelRecentAdvertisements)
+//                .build();
+//    }
 }

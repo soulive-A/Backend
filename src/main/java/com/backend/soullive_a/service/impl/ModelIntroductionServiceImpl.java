@@ -3,6 +3,7 @@ package com.backend.soullive_a.service.impl;
 import com.backend.soullive_a.dto.request.ModelIntroduceRequest;
 import com.backend.soullive_a.dto.request.ModelRecentAdvertisementRequest;
 import com.backend.soullive_a.dto.request.ModelRecentWorkRequest;
+import com.backend.soullive_a.dto.response.ModelImageKeywordResponse;
 import com.backend.soullive_a.dto.response.ModelIntroductionResponse;
 import com.backend.soullive_a.entity.model.Model;
 import com.backend.soullive_a.entity.model.introduction.ModelImageKeyword;
@@ -48,6 +49,14 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
         System.out.println(model.getModelName());
         List<ModelImageKeyword> modelImageKeywords = modelImageKeywordRepository.findAllByModel(model);
 
+        List<ModelImageKeywordResponse> dtoList = modelImageKeywords.stream()
+                .map(modelImageKeyword -> ModelImageKeywordResponse.builder()
+                        .id(modelImageKeyword.getId())
+                        .keyword(modelImageKeyword.getKeyword())
+                        .model(modelImageKeyword.getModel())
+                        .build())
+                .collect(Collectors.toList());
+
 //        List<ModelImageKeyword> modelImageKeywords2 = modelImageKeywords.stream()
 //                .map(keyword -> new ModelImageKeyword(keyword.getId(), keyword.getKeyword(), keyword.getModel()))
 //                .collect(Collectors.toList());
@@ -56,13 +65,9 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
 //        for (ModelImageKeyword keyword : modelImageKeywords2) {
 //            System.out.println(keyword.getKeyword());
 //        }
-        return ModelIntroductionResponse.fromModelIntroduction(
-                modelImageKeywordRepository.findAllById(modelId),
-                modelRecentWorkRepository.findAllById(modelId),
-                modelRecentAdvertisementRepository.findAllById(modelId)
-        );
+
         return ModelIntroductionResponse.builder()
-                .modelImageKeywords(modelImageKeywords)
+                .modelImageKeywords(dtoList)
                 .modelRecentWorks(null)
                 .modelRecentAdvertisements(null)
                 .build();
