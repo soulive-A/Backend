@@ -1,5 +1,6 @@
-package com.backend.soullive_a.entity;
+package com.backend.soullive_a.entity.model;
 
+import com.backend.soullive_a.entity.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
