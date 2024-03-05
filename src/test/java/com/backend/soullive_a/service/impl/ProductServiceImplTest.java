@@ -71,13 +71,13 @@ class ProductServiceImplTest {
         // 성별 entity 생성
         Gender gender = Gender.builder()
             .product(product)
-            .gender(GenderType.Male)
+            .gender(GenderType.MALE)
             .build();
         genderRepository.save(gender);
         // 나이 entity 생성
         Age age = Age.builder()
             .product(product)
-            .age(AgeType.FIFTEEN)
+            .age(AgeType.FIFTY)
             .build();
         ageRepository.save(age);
         // 범주 entity 생성
