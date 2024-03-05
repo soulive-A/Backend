@@ -50,4 +50,16 @@ public class ProductController {
                 .data(productService.getProduct(id))
                 .build();
     }
+
+    @DeleteMapping("/{id}")
+    public BaseResponse<Void> deleteProduct(@PathVariable Long id) {
+
+        productService.deleteProduct(id);
+
+        return BaseResponse.<Void>builder()
+            .isSuccess(true)
+            .code(200)
+            .message("광고 상품 삭제 성공")
+            .build();
+    }
 }

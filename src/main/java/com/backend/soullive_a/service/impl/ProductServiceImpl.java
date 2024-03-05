@@ -128,4 +128,10 @@ public class ProductServiceImpl implements ProductService {
         }
         return productResponses;
     }
+
+    @Override
+    @Transactional
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
+    }
 }
