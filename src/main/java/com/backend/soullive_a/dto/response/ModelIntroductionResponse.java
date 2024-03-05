@@ -13,7 +13,7 @@ public record ModelIntroductionResponse(
         List<ModelRecentWorkResponse> modelRecentWorks,
         List<ModelRecentAdvertisementResponse> modelRecentAdvertisements
 ) {
-//    public static ModelIntroductionResponse fromModelIntroduction(
+//    public static ModelIntroductionResponse transfromToDto(
 //            List<ModelImageKeyword> modelImageKeywords,
 //            List<ModelRecentWork> modelRecentWorks,
 //            List<ModelRecentAdvertisement> modelRecentAdvertisements) {

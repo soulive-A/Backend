@@ -49,21 +49,42 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
                 .orElseThrow(() -> new NotFoundUserException());
 
         List<ModelImageKeyword> modelImageKeywords = modelImageKeywordRepository.findAllByModel(model);
+        List<ModelRecentWork> modelRecentWorks = modelRecentWorkRepository.findAllByModel(model);
+        List<ModelRecentAdvertisement> modelRecentAdvertisements = modelRecentAdvertisementRepository.findAllByModel(model);
 
+        List<String> modelImageKeywordResponse = new ArrayList<>();
+        List<ModelRecentWorkResponse> modelRecentWorkResponse = new ArrayList<>();
+        List<ModelRecentAdvertisementResponse> modelRecentAdvertisementResponse = new ArrayList<>();
 
-        List<String> modelImageKeywordList = new ArrayList<>();
         for (ModelImageKeyword keyword : modelImageKeywords) {
-
-
-            modelImageKeywordList.add(keyword.getKeyword());
+            modelImageKeywordResponse.add(keyword.getKeyword());
+        }
+        for (ModelRecentWork modelRecentWork : modelRecentWorks) {
+            modelRecentWorkResponse.add(
+                    ModelRecentWorkResponse.builder()
+                            .year(modelRecentWork.getYear())
+                            .category(modelRecentWork.getCategory())
+                            .title(modelRecentWork.getTitle())
+                            .genre(modelRecentWork.getGenre())
+                            .role(modelRecentWork.getRole())
+                            .isMainActor(modelRecentWork.getIsMainActor())
+                            .build()
+            );
         }
 
-
+        for (ModelRecentAdvertisement modelRecentAdvertisement : modelRecentAdvertisements) {
+            modelRecentAdvertisementResponse.add(
+                    ModelRecentAdvertisementResponse.builder()
+                            .year(modelRecentAdvertisement.getYear())
+                            .brand(modelRecentAdvertisement.getBrand())
+                            .build()
+            );
+        }
 
         return ModelIntroductionResponse.builder()
-                .modelImageKeywords(modelImageKeywordList)
-                .modelRecentWorks(null)
-                .modelRecentAdvertisements(null)
+                .modelImageKeywords(modelImageKeywordResponse)
+                .modelRecentWorks(modelRecentWorkResponse)
+                .modelRecentAdvertisements(modelRecentAdvertisementResponse)
                 .build();
 
 
@@ -101,9 +122,7 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
 
             modelImageKeywordRepository.save(modelImageKeyword);
 
-            //dto객체 생성
-
-
+            // ModelImageKeywordResponse (String) 생성
             modelImageKeywordList.add(keyword);
 
         }
@@ -122,7 +141,7 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
 
             modelRecentWorkRepository.save(modelRecentWork);
 
-            //dto 객체 생성
+            // ModelRecentWorkResponse 생성
             ModelRecentWorkResponse modelRecentWorkResponse = ModelRecentWorkResponse.builder()
                     .year(modelRecentWorkRequest.year())
                     .category(modelRecentWorkRequest.category())
@@ -130,7 +149,6 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
                     .genre(modelRecentWorkRequest.genre())
                     .role(modelRecentWorkRequest.role())
                     .isMainActor(modelRecentWorkRequest.isMainActor())
-//                    .model(model)
                     .build();
 
             modelRecentWorkList.add(modelRecentWorkResponse);
@@ -146,17 +164,17 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
 
             modelRecentAdvertisementRepository.save(modelRecentAdvertisement);
 
-            //dto 생성
+            // ModelRecentAdvertisementResponse 생성
             ModelRecentAdvertisementResponse modelRecentAdvertisementResponse = ModelRecentAdvertisementResponse.builder()
                     .year(modelRecentAdvertisementRequest.year())
                     .brand(modelRecentAdvertisementRequest.brand())
-//                    .model(model)
                     .build();
 
             modelRecentAdvertisementList.add(modelRecentAdvertisementResponse);
         }
 
-        //전체 dto생성
+        //ModelIntroductionResponse 생성
+
         return ModelIntroductionResponse.builder()
                 .modelImageKeywords(modelImageKeywordList)
                 .modelRecentWorks(modelRecentWorkList)
