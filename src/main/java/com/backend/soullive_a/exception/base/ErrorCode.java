@@ -10,9 +10,14 @@ public enum ErrorCode {
 
     //실패 - 필요시 만들어 쓰세요
     /**
-     * 2000 : User 오류
+     * 2000 : User 관련 오류
      */
-    NOT_FOUND_USER(false, 2001, "사용자를 찾을 수 없습니다", HttpStatus.NOT_FOUND);
+    NOT_FOUND_USER(false, 2001, "사용자를 찾을 수 없습니다", HttpStatus.NOT_FOUND),
+
+    /**
+     * 3000 : Product 관련 오류
+     */
+    NOT_FOUND_PRODUCT(false, 3001, "광고 상품을 찾을 수 없습니다",HttpStatus.NOT_FOUND);
 
     private final boolean isSuccess;
     private final int code;

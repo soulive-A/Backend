@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/model")
 public class ModelController {
     private final ModelService modelService;
 
@@ -18,7 +19,7 @@ public class ModelController {
      * @param modelId
      * @return
      */
-    @GetMapping("/api/model/{modelId}")
+    @GetMapping("/{modelId}")
     public BaseResponse<ModelResponse> getModel(@PathVariable Long modelId) {
         return BaseResponse.<ModelResponse>builder()
                 .isSuccess(true)
@@ -34,8 +35,9 @@ public class ModelController {
      * @param request
      * @return
      */
-    @PostMapping("/api/model")
+    @PostMapping("")
     public BaseResponse<ModelResponse> createModel(@RequestBody @Valid ModelRequest request) {
+        System.out.println("@");
         return BaseResponse.<ModelResponse>builder()
                 .isSuccess(true)
                 .code(200)
