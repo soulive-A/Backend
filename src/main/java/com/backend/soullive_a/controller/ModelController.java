@@ -35,8 +35,9 @@ public class ModelController {
      * @param request
      * @return
      */
-    @PostMapping("/")
+    @PostMapping("")
     public BaseResponse<ModelResponse> createModel(@RequestBody @Valid ModelRequest request) {
+        System.out.println("@");
         return BaseResponse.<ModelResponse>builder()
                 .isSuccess(true)
                 .code(200)
