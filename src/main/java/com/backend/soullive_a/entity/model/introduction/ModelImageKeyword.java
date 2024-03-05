@@ -16,10 +16,10 @@ public class ModelImageKeyword {
     @Column(name = "MODEL_IMAGE_KEYWORD_ID", nullable = false)
     private Long id;
 
+    @Column(name = "KEYWORD", nullable = false)
+    private String keyword;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MODEL_ID", nullable = false)
     private Model model;
-
-    @Column(name = "KEYWORD", nullable = false)
-    private String keyword;
 }

@@ -21,7 +21,6 @@ public class ModelRecentAdvertisement {
     @Column(name = "BRAND", nullable = false)
     private String brand;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MODEL_ID", nullable = false)
     private Model model;

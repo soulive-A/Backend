@@ -3,6 +3,7 @@ package com.backend.soullive_a.entity.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,7 +21,7 @@ public class Model {
     private String modelName;
 
     @Column(name = "BIRTH", nullable = false)
-    private LocalDateTime birth;
+    private LocalDate birth;
 
     @Column(name = "JOB", nullable = false)
     private String job;

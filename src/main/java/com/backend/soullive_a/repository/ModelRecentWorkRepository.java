@@ -1,7 +1,5 @@
 package com.backend.soullive_a.repository;
 
-import com.backend.soullive_a.dto.response.ModelImageKeywordResponse;
-import com.backend.soullive_a.entity.model.Model;
 import com.backend.soullive_a.entity.model.introduction.ModelRecentWork;
 import org.springframework.data.jpa.repository.JpaRepository;
 
