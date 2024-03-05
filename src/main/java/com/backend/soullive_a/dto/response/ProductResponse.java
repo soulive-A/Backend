@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 @Builder
 public record ProductResponse(
+        Long userId,
         Long productId,
         String company,
         String brand,
@@ -47,6 +48,7 @@ public record ProductResponse(
                 .collect(Collectors.toList());
 
         return ProductResponse.builder()
+                .userId(product.getUser().getId())
                 .productId(product.getId())
                 .company(product.getCompany())
                 .brand(product.getBrand())

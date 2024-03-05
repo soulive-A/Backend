@@ -47,8 +47,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         User user = User.builder()
             .id(1L)
-            .phoneNumber("010-3370-2740")
-            .password("1234")
+            .phoneNumber("010-0000-0000")
+            .password("password")
             .build();
 
         return new UsernamePasswordAuthenticationToken(user, null, null);

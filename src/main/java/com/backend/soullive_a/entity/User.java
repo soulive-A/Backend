@@ -14,12 +14,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "user")
 @Getter
-@Builder @NoArgsConstructor @AllArgsConstructor
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "USER_ID", nullable = false)
     private Long id;
 
     private String phoneNumber;
