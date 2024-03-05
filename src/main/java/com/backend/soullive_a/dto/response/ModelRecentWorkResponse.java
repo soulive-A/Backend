@@ -9,13 +9,13 @@ import lombok.Builder;
 
 @Builder
 public record ModelRecentWorkResponse(
-        Long id,
+//        Long id,
         Integer year,
         String category,
         String title,
         String genre,
         String role,
-        Boolean isMainActor,
-        Model model
+        Boolean isMainActor
+//        Model model
 ) {
 }

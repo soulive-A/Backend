@@ -5,6 +5,8 @@ import com.backend.soullive_a.dto.request.ModelRecentAdvertisementRequest;
 import com.backend.soullive_a.dto.request.ModelRecentWorkRequest;
 import com.backend.soullive_a.dto.response.ModelImageKeywordResponse;
 import com.backend.soullive_a.dto.response.ModelIntroductionResponse;
+import com.backend.soullive_a.dto.response.ModelRecentAdvertisementResponse;
+import com.backend.soullive_a.dto.response.ModelRecentWorkResponse;
 import com.backend.soullive_a.entity.model.Model;
 import com.backend.soullive_a.entity.model.introduction.ModelImageKeyword;
 import com.backend.soullive_a.entity.model.introduction.ModelIntroduction;
@@ -46,36 +48,25 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
         Model model = modelRepository.findById(modelId)
                 .orElseThrow(() -> new NotFoundUserException());
 
-        System.out.println(model.getModelName());
         List<ModelImageKeyword> modelImageKeywords = modelImageKeywordRepository.findAllByModel(model);
 
-        List<ModelImageKeywordResponse> dtoList = modelImageKeywords.stream()
-                .map(modelImageKeyword -> ModelImageKeywordResponse.builder()
-                        .id(modelImageKeyword.getId())
-                        .keyword(modelImageKeyword.getKeyword())
-                        .model(modelImageKeyword.getModel())
-                        .build())
-                .collect(Collectors.toList());
 
-//        List<ModelImageKeyword> modelImageKeywords2 = modelImageKeywords.stream()
-//                .map(keyword -> new ModelImageKeyword(keyword.getId(), keyword.getKeyword(), keyword.getModel()))
-//                .collect(Collectors.toList());
+        List<String> modelImageKeywordList = new ArrayList<>();
+        for (ModelImageKeyword keyword : modelImageKeywords) {
 
-//        System.out.println("len"+modelImageKeywords2.size());
-//        for (ModelImageKeyword keyword : modelImageKeywords2) {
-//            System.out.println(keyword.getKeyword());
-//        }
+
+            modelImageKeywordList.add(keyword.getKeyword());
+        }
+
+
 
         return ModelIntroductionResponse.builder()
-                .modelImageKeywords(dtoList)
+                .modelImageKeywords(modelImageKeywordList)
                 .modelRecentWorks(null)
                 .modelRecentAdvertisements(null)
                 .build();
-//        return ModelIntroductionResponse.builder()
-//                .modelImageKeywords(modelImageKeywordRepository.findAllById(modelId))
-//                .modelRecentWorks(modelRecentWorkRepository.findAllById(modelId))
-//                .modelRecentAdvertisements(modelRecentAdvertisementRepository.findAllById(modelId))
-//                .build();
+
+
     }
 
     /**
@@ -87,15 +78,15 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
     @Override
     @Transactional
     public ModelIntroductionResponse createModelIntroduction(ModelIntroduceRequest request, Long modelId) {
-        List<ModelImageKeyword> modelImageKeywordList = new ArrayList<>();
-        List<ModelRecentWork> modelRecentWorkList = new ArrayList<>();
-        List<ModelRecentAdvertisement> modelRecentAdvertisementList = new ArrayList<>();
-
+        List<String> modelImageKeywordList = new ArrayList<>();
+        List<ModelRecentWorkResponse> modelRecentWorkList = new ArrayList<>();
+        List<ModelRecentAdvertisementResponse> modelRecentAdvertisementList = new ArrayList<>();
 
         Model model = modelRepository.findById(modelId)
                 .orElseThrow(() -> new NotFoundUserException());
 
-        ModelIntroduction modelIntroduction = modelIntroductionRepository.save(
+        // ModelIntroduction 엔티티 저장
+        modelIntroductionRepository.save(
                 ModelIntroduction.builder()
                         .model(model)
                         .build()
@@ -107,8 +98,13 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
                     .model(model)
                     .keyword(keyword)
                     .build();
-            modelImageKeywordList.add(modelImageKeyword);
+
             modelImageKeywordRepository.save(modelImageKeyword);
+
+            //dto객체 생성
+
+
+            modelImageKeywordList.add(keyword);
 
         }
 
@@ -124,8 +120,20 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
                     .model(model)
                     .build();
 
-            modelRecentWorkList.add(modelRecentWork);
             modelRecentWorkRepository.save(modelRecentWork);
+
+            //dto 객체 생성
+            ModelRecentWorkResponse modelRecentWorkResponse = ModelRecentWorkResponse.builder()
+                    .year(modelRecentWorkRequest.year())
+                    .category(modelRecentWorkRequest.category())
+                    .title(modelRecentWorkRequest.title())
+                    .genre(modelRecentWorkRequest.genre())
+                    .role(modelRecentWorkRequest.role())
+                    .isMainActor(modelRecentWorkRequest.isMainActor())
+//                    .model(model)
+                    .build();
+
+            modelRecentWorkList.add(modelRecentWorkResponse);
         }
 
         // modelRecentAdvertisementRepository 엔티티 각각 저장
@@ -136,10 +144,19 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
                     .model(model)
                     .build();
 
-            modelRecentAdvertisementList.add(modelRecentAdvertisement);
             modelRecentAdvertisementRepository.save(modelRecentAdvertisement);
+
+            //dto 생성
+            ModelRecentAdvertisementResponse modelRecentAdvertisementResponse = ModelRecentAdvertisementResponse.builder()
+                    .year(modelRecentAdvertisementRequest.year())
+                    .brand(modelRecentAdvertisementRequest.brand())
+//                    .model(model)
+                    .build();
+
+            modelRecentAdvertisementList.add(modelRecentAdvertisementResponse);
         }
 
+        //전체 dto생성
         return ModelIntroductionResponse.builder()
                 .modelImageKeywords(modelImageKeywordList)
                 .modelRecentWorks(modelRecentWorkList)

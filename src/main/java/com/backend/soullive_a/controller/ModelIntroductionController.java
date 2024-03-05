@@ -25,7 +25,7 @@ public class ModelIntroductionController {
     public BaseResponse<ModelIntroductionResponse> getModelIntroduction(@PathVariable Long modelId) {
         return BaseResponse.<ModelIntroductionResponse>builder()
                 .isSuccess(true)
-                .code(200)
+                .code(2006)
                 .message("모델소개 정보 조회에 성공했습니다.")
                 .data(modelIntroductionService.getModelIntroduction(modelId))
                 .build();
@@ -37,7 +37,7 @@ public class ModelIntroductionController {
             @RequestBody @Valid ModelIntroduceRequest request) {
         return BaseResponse.<ModelIntroductionResponse>builder()
                 .isSuccess(true)
-                .code(200)
+                .code(2006)
                 .message("모델소개 정보 생성에 성공했습니다.")
                 .data(modelIntroductionService.createModelIntroduction(request, modelId))
                 .build();

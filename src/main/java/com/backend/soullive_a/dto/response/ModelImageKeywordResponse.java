@@ -9,7 +9,8 @@ import lombok.Builder;
 
 @Builder
 public record ModelImageKeywordResponse(
-        Long id,
-        String keyword,
-        Model model) {
+//        Long id,
+        String keyord
+//        Model model //필요한가?
+) {
 }
