@@ -1,1 +1,1 @@
-INSERT INTO test_db.user (user_id, password, phone_number) VALUES (1, 'password', '010-0000-0000');
+INSERT INTO soullive.user (user_id, password, phone_number) VALUES (1, 'password', '010-0000-0000');
