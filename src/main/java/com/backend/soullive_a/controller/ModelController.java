@@ -2,9 +2,11 @@ package com.backend.soullive_a.controller;
 
 import com.backend.soullive_a.dto.request.ModelRequest;
 import com.backend.soullive_a.dto.response.ModelResponse;
+import com.backend.soullive_a.dto.response.RecentModelResponse;
 import com.backend.soullive_a.exception.base.BaseResponse;
 import com.backend.soullive_a.service.ModelService;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +22,12 @@ public class ModelController {
      * @return
      */
     @GetMapping("")
-    public BaseResponse<ModelResponse> getModel(@RequestParam String modelName) {
+    public BaseResponse<ModelResponse> getModel(@RequestParam String modelName, @RequestParam Long productId) {
         return BaseResponse.<ModelResponse>builder()
                 .isSuccess(true)
                 .code(200)
                 .message("모델 조회에 성공했습니다.")
-                .data(modelService.getModel(modelName))
+                .data(modelService.getModel(modelName,productId))
                 .build();
 
     }
