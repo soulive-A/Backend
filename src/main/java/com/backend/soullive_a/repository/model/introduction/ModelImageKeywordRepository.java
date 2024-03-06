@@ -1,4 +1,4 @@
-package com.backend.soullive_a.repository;
+package com.backend.soullive_a.repository.model.introduction;
 
 
 import com.backend.soullive_a.entity.model.Model;

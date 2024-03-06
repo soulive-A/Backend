@@ -17,8 +17,9 @@ public class ModelServiceImpl implements ModelService {
     private final ModelRepository modelRepository;
 
     @Override
-    public ModelResponse getModel(Long modelId) {
-         Model model = modelRepository.findById(modelId)
+    public ModelResponse getModel(String modelName) {
+        System.out.println(modelName);
+        Model model = modelRepository.findByModelName(modelName)
                 .orElseThrow(() -> new NotFoundUserException());
 
         return ModelResponse.builder()

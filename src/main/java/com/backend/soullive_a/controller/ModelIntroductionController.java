@@ -19,16 +19,16 @@ public class ModelIntroductionController {
 
     /**
      * 모델소개 조회 api
-     * @param modelId
+     * @param modelName
      * @return
      */
-    @GetMapping("/{modelId}")
-    public BaseResponse<ModelIntroductionResponse> getModelIntroduction(@PathVariable Long modelId) {
+    @GetMapping("")
+    public BaseResponse<ModelIntroductionResponse> getModelIntroduction(@RequestParam String modelName) {
         return BaseResponse.<ModelIntroductionResponse>builder()
                 .isSuccess(true)
                 .code(2006)
                 .message("모델소개 정보 조회에 성공했습니다.")
-                .data(modelIntroductionService.getModelIntroduction(modelId))
+                .data(modelIntroductionService.getModelIntroduction(modelName))
                 .build();
     }
 

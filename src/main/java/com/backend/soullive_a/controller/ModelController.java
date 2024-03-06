@@ -16,16 +16,16 @@ public class ModelController {
 
     /**
      * 모델 조회 api
-     * @param modelId
+     * @param modelName
      * @return
      */
-    @GetMapping("/{modelId}")
-    public BaseResponse<ModelResponse> getModel(@PathVariable Long modelId) {
+    @GetMapping("")
+    public BaseResponse<ModelResponse> getModel(@RequestParam String modelName) {
         return BaseResponse.<ModelResponse>builder()
                 .isSuccess(true)
                 .code(200)
                 .message("모델 조회에 성공했습니다.")
-                .data(modelService.getModel(modelId))
+                .data(modelService.getModel(modelName))
                 .build();
 
     }

@@ -4,7 +4,6 @@ package com.backend.soullive_a.service.impl;
 import com.backend.soullive_a.dto.request.ModelIntroduceRequest;
 import com.backend.soullive_a.dto.request.ModelRecentAdvertisementRequest;
 import com.backend.soullive_a.dto.request.ModelRecentWorkRequest;
-import com.backend.soullive_a.dto.response.ModelImageKeywordResponse;
 import com.backend.soullive_a.dto.response.ModelIntroductionResponse;
 import com.backend.soullive_a.dto.response.ModelRecentAdvertisementResponse;
 import com.backend.soullive_a.dto.response.ModelRecentWorkResponse;
@@ -15,16 +14,18 @@ import com.backend.soullive_a.entity.model.introduction.ModelRecentAdvertisement
 import com.backend.soullive_a.entity.model.introduction.ModelRecentWork;
 import com.backend.soullive_a.exception.custom.NotFoundUserException;
 import com.backend.soullive_a.repository.*;
+import com.backend.soullive_a.repository.model.introduction.ModelImageKeywordRepository;
+import com.backend.soullive_a.repository.model.introduction.ModelIntroductionRepository;
+import com.backend.soullive_a.repository.model.introduction.ModelRecentAdvertisementRepository;
+import com.backend.soullive_a.repository.model.introduction.ModelRecentWorkRepository;
 import com.backend.soullive_a.service.ModelIntroductionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -45,8 +46,8 @@ public class ModelIntroductionServiceImpl implements ModelIntroductionService {
      * @return
      */
     @Override
-    public ModelIntroductionResponse getModelIntroduction(Long modelId) {
-        Model model = modelRepository.findById(modelId)
+    public ModelIntroductionResponse getModelIntroduction(String modelName) {
+        Model model = modelRepository.findByModelName(modelName)
                 .orElseThrow(() -> new NotFoundUserException());
 
         List<ModelImageKeyword> modelImageKeywords = modelImageKeywordRepository.findAllByModel(model);
