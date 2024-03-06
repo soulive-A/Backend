@@ -37,37 +37,6 @@ public class ModelServiceImpl implements ModelService {
                 .build();
     }
 
-    @Override
-    @Transactional
-    public ModelResponse createModel(ModelRequest request) {
-        // 중복 검사 로직 추가
 
-        Model model = modelRepository.save(Model.builder()
-                .imageUrl(request.imageUrl())
-
-                .modelName(request.modelName())
-                .birth(request.birth())
-                .age(request.age())
-
-                .job(request.job())
-                .info(request.info())
-                .agency(request.agency())
-                .aiRate(request.aiRate())
-                .build());
-
-        return ModelResponse.builder()
-                .modelId(model.getId())
-
-                .imageUrl(model.getImageUrl())
-                .modelName(model.getModelName())
-                .birth(model.getBirth())
-                .age(model.getAge())
-
-                .job(model.getJob())
-                .info(model.getInfo())
-                .agency(model.getAgency())
-                .aiRate(model.getAiRate())
-                .build();
-    }
 
 }

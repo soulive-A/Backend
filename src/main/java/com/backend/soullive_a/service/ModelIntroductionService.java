@@ -9,6 +9,6 @@ import java.util.List;
 public interface ModelIntroductionService {
     public ModelIntroductionResponse getModelIntroduction(String modelName);
 
-    public ModelIntroductionResponse createModelIntroduction(ModelIntroduceRequest request, Long modelId);
+
 }
 

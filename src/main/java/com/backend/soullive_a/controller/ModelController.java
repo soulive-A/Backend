@@ -30,20 +30,4 @@ public class ModelController {
 
     }
 
-    /**
-     * 모델 등록 api
-     * @param request
-     * @return
-     */
-    @PostMapping("")
-    public BaseResponse<ModelResponse> createModel(@RequestBody @Valid ModelRequest request) {
-        System.out.println("@");
-        return BaseResponse.<ModelResponse>builder()
-                .isSuccess(true)
-                .code(200)
-                .message("모델 생성에 성공했습니다.")
-                .data(modelService.createModel(request))
-                .build();
-
-    }
 }
