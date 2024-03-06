@@ -16,6 +16,9 @@ public class ModelNews {
     @Column(name = "issueId", nullable = false)
     private Long id;
 
+    @Column(name = "COMPANY", nullable = false)
+    private String  company;
+
     @Column(name = "NEWS_DATE", nullable = false)
     private LocalDate newsDate;
 
