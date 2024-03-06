@@ -1,5 +1,7 @@
 package com.backend.soullive_a.dto.response.model.popularity;
 
+import com.backend.soullive_a.constant.AgeType;
+import com.backend.soullive_a.constant.GenderType;
 import com.backend.soullive_a.entity.model.popularity.ModelPopularAge;
 import com.backend.soullive_a.entity.model.popularity.ModelPopularGender;
 import com.backend.soullive_a.entity.model.popularity.ModelPopularity;
@@ -15,8 +17,8 @@ public record ModelPopularityResponse(
         Long modelId,
         String scoreUrl,
         String aiComment,
-        List<ModelPopularGenderResponse> genders,
-        List<ModelPopularAgeResponse> ages,
+        List<GenderType> genders,
+        List<AgeType> ages,
         String snsUrl,
         String searchUrl,
         String brandScoreUrl,
@@ -28,17 +30,16 @@ public record ModelPopularityResponse(
             List<ModelPopularAge> modelPopularAge,
             List<ModelScheduledWork> modelScheduledWork
             ) {
-        List<ModelPopularGenderResponse> modelPopularGenders = modelPopularGender.stream()
-                .map(gender -> new ModelPopularGenderResponse(gender.getId(), gender.getGender()))
+        List<GenderType> modelPopularGenders = modelPopularGender.stream()
+                .map(ModelPopularGender::getGender)
                 .collect(Collectors.toList());
 
-        List<ModelPopularAgeResponse> modelPopularAges = modelPopularAge.stream()
-                .map(age -> new ModelPopularAgeResponse(age.getId(), age.getAge()))
+        List<AgeType> modelPopularAges = modelPopularAge.stream()
+                .map(ModelPopularAge::getAge)
                 .collect(Collectors.toList());
 
         List<ModelScheduledWorkResponse> modelScheduledWorks = modelScheduledWork.stream()
                 .map(work -> new ModelScheduledWorkResponse(
-                        work.getId(),
                         work.getImageUrl(),
                         work.getYear(),
                         work.getCategory(),

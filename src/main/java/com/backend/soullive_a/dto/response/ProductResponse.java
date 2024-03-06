@@ -1,5 +1,7 @@
 package com.backend.soullive_a.dto.response;
 
+import com.backend.soullive_a.constant.AgeType;
+import com.backend.soullive_a.constant.GenderType;
 import com.backend.soullive_a.entity.*;
 import lombok.Builder;
 
@@ -12,13 +14,13 @@ public record ProductResponse(
         Long productId,
         String company,
         String brand,
-        List<BrandImageResponse> brandImages,
+        List<String> brandImages,
         String product,
         String characteristic,
-        List<ProductImageResponse> productImages,
-        List<GenderResponse> genders,
-        List<AgeResponse> ages,
-        List<RangeResponse> ranges
+        List<String> productImages,
+        List<GenderType> genders,
+        List<AgeType> ages,
+        List<String> ranges
 ) {
     public static ProductResponse fromProduct(
             Product product,
@@ -27,24 +29,24 @@ public record ProductResponse(
             List<Gender> genderType,
             List<Age> ageType,
             List<Range> rangeType) {
-        List<BrandImageResponse> brandImages = brandImage.stream()
-                .map(image -> new BrandImageResponse(image.getId(), image.getBrandImage()))
+        List<String> brandImages = brandImage.stream()
+                .map(BrandImage::getBrandImage)
                 .collect(Collectors.toList());
 
-        List<ProductImageResponse> productImages = productImage.stream()
-                .map(image -> new ProductImageResponse(image.getId(), image.getProductImage()))
+        List<String> productImages = productImage.stream()
+                .map(ProductImage::getProductImage)
                 .collect(Collectors.toList());
 
-        List<GenderResponse> genders = genderType.stream()
-                .map(gender -> new GenderResponse(gender.getId(), gender.getGender()))
+        List<GenderType> genders = genderType.stream()
+                .map(Gender::getGender)
                 .collect(Collectors.toList());
 
-        List<AgeResponse> ages = ageType.stream()
-                .map(age -> new AgeResponse(age.getId(), age.getAge()))
+        List<AgeType> ages = ageType.stream()
+                .map(Age::getAge)
                 .collect(Collectors.toList());
 
-        List<RangeResponse> ranges = rangeType.stream()
-                .map(range -> new RangeResponse(range.getId(), range.getRange()))
+        List<String> ranges = rangeType.stream()
+                .map(Range::getRange)
                 .collect(Collectors.toList());
 
         return ProductResponse.builder()
