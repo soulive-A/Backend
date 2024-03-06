@@ -1,11 +1,14 @@
 package com.backend.soullive_a.exception.base;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
+@JsonInclude(Include.NON_EMPTY)
 public class BaseResponse<T> {
 
     private boolean isSuccess;

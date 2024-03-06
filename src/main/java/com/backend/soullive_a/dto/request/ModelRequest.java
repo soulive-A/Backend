@@ -11,6 +11,7 @@ public record ModelRequest(
          LocalDate birth,
          String  age,
          String job,
+
         String info,
          String agency,
          Float aiRate) {

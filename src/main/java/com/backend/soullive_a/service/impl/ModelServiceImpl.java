@@ -43,6 +43,7 @@ public class ModelServiceImpl implements ModelService {
 
         Model model = modelRepository.save(Model.builder()
                 .imageUrl(request.imageUrl())
+
                 .modelName(request.modelName())
                 .birth(request.birth())
                 .age(request.age())
