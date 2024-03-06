@@ -24,7 +24,6 @@ public class ModelIssue {
     @Column(name = "CRIME", nullable = false)
     private Integer crime;
 
-    @Column
     @OneToOne
     @JoinColumn(name = "MODEL_ID", nullable = false)
     private Model model;
