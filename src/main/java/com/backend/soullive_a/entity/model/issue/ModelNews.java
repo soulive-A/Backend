@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class ModelNews {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "issueId", nullable = false)
+    @Column(name = "MODEL_NEWS_ID", nullable = false)
     private Long id;
 
     @Column(name = "COMPANY", nullable = false)
@@ -29,7 +29,7 @@ public class ModelNews {
     private String newsUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MODEL_ISSUE", nullable = false)
+    @JoinColumn(name = "MODEL_ISSUE_ID", nullable = false)
     private ModelIssue modelIssue;
 
 }

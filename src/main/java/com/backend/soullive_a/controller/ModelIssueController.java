@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("model/issue")
+@RequestMapping("api/model/issue")
 public class ModelIssueController {
     private final ModelIssueService modelIssueService;
     @GetMapping()
