@@ -15,6 +15,10 @@ public class ModelRecentAdvertisement {
     @Column(name = "MODEL_RECENT_ADVERTISEMENT_ID", nullable = false)
     private Long id;
 
+    @Column(name = "IMAGE_URL", nullable = false)
+    private String imageUrl;
+
+
     @Column(name = "YEAR", nullable = false)
     private Integer year;
 

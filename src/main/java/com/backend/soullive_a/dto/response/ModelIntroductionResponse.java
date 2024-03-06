@@ -9,8 +9,9 @@ import java.util.List;
 
 @Builder
 public record ModelIntroductionResponse(
-        List<ModelImageKeyword> modelImageKeywords,
-        List<ModelRecentWork> modelRecentWorks,
-        List<ModelRecentAdvertisement> modelRecentAdvertisements
+
+        List<String> modelImageKeywords,
+        List<ModelRecentWorkResponse> modelRecentWorks,
+        List<ModelRecentAdvertisementResponse> modelRecentAdvertisements
 ) {
 }

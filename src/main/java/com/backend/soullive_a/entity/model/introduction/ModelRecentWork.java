@@ -15,6 +15,9 @@ public class ModelRecentWork {
     @Column(name = "MODEL_RECENT_WORK_ID", nullable = false)
     private Long id;
 
+    @Column(name = "IMAGE_URL", nullable = false)
+    private String imageUrl;
+
     @Column(name = "YEAR", nullable = false)
     private Integer year;
 
@@ -29,9 +32,6 @@ public class ModelRecentWork {
 
     @Column(name = "ROLE", nullable = false)
     private String role;
-
-    @Column(name = "IS_MAIN_ACTOR", nullable = false)
-    private Boolean isMainActor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MODEL_ID", nullable = false)

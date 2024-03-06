@@ -8,8 +8,12 @@ import java.time.LocalDateTime;
 @Builder
 public record ModelResponse(
         Long modelId,
+        String imageUrl,
         String modelName,
         LocalDate birth,
+
+        String age,
+
         String job,
         String info,
         String agency,
