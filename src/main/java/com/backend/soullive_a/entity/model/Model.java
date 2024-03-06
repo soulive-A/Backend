@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -22,6 +21,9 @@ public class Model {
 
     @Column(name = "BIRTH", nullable = false)
     private LocalDate birth;
+
+    @Column(name = "AGE", nullable = false)
+    private String age;
 
     @Column(name = "JOB", nullable = false)
     private String job;
