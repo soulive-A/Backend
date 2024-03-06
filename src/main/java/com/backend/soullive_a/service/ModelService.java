@@ -8,6 +8,7 @@ import java.util.List;
 public interface ModelService {
     public ModelResponse getModel(String modelName, Long productId);
 
+
     public ModelResponse createModel(ModelRequest request);
 
     public List<RecentModelResponse> getRecentModel(Long productId);

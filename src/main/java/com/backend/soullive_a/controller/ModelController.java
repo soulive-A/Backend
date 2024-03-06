@@ -2,7 +2,6 @@ package com.backend.soullive_a.controller;
 
 import com.backend.soullive_a.dto.request.ModelRequest;
 import com.backend.soullive_a.dto.response.ModelResponse;
-import com.backend.soullive_a.dto.response.RecentModelResponse;
 import com.backend.soullive_a.exception.base.BaseResponse;
 import com.backend.soullive_a.service.ModelService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,6 +34,7 @@ public class ModelController {
                 .build();
 
     }
+
     /**
      * 모델 등록 api
      * @param request
