@@ -23,22 +23,22 @@ public class Model {
     @Column(name = "MODEL_NAME", nullable = false)
     private String modelName;
 
-    @Column(name = "BIRTH", nullable = false)
+    @Column(name = "BIRTH")
     private LocalDate birth;
 
 
-    @Column(name = "AGE", nullable = false)
+    @Column(name = "AGE")
     private String age;
 
-    @Column(name = "JOB", nullable = false)
+    @Column(name = "JOB")
     private String job;
 
     @Column(name = "INFO")
     private String info;
 
-    @Column(name = "AGENCY", nullable = false)
+    @Column(name = "AGENCY")
     private String agency;
 
-    @Column(name = "AI_RATE", nullable = false)
+    @Column(name = "AI_RATE")
     private Float aiRate;
 }
