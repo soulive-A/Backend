@@ -11,7 +11,9 @@ public record RecentModelResponse(
     @Schema(name = "modelName", example = "한지민", description = "모델 이름입니다.")
     String modelName,
     @Schema(name = "aiRate", example = "3.0", description = "ai 추천 점수입니다.")
-    Float aiRate
+    Float aiRate,
+    @Schema(name = "job", example = "배우", description = "직업에 대한 값입니다.")
+    String job
 ) {
 
 }

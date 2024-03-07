@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 public interface ProductModelRepository extends JpaRepository<ProductModel, Long> {
 
     @Query("Select "
-        + "new com.backend.soullive_a.dto.response.RecentModelResponse(m.id,m.imageUrl,m.modelName,m.aiRate) "
+        + "new com.backend.soullive_a.dto.response.RecentModelResponse(m.id,m.imageUrl,m.modelName,m.aiRate,m.job) "
         + "From ProductModel p "
         + "Inner Join Model m On p.model.id = m.id "
         + "Where p.product.id = :productId "
