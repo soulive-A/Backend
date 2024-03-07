@@ -1,6 +1,6 @@
 package com.backend.soullive_a.controller;
 
-import com.backend.soullive_a.dto.response.ModelRecommendResponse;
+import com.backend.soullive_a.dto.response.ModelRecommendResponseList;
 import com.backend.soullive_a.dto.response.ModelResponse;
 import com.backend.soullive_a.dto.response.RecentModelResponse;
 import com.backend.soullive_a.exception.base.BaseResponse;
@@ -49,8 +49,8 @@ public class ModelController {
 
     @Operation(summary = "모델 추천 API", description = "모델을 추천 받는 API이다.")
     @GetMapping("/recommendation")
-    public BaseResponse<List<ModelRecommendResponse>> getRecommendModel(){
-        return BaseResponse.<List<ModelRecommendResponse>>builder()
+    public BaseResponse<ModelRecommendResponseList> getRecommendModel(){
+        return BaseResponse.<ModelRecommendResponseList>builder()
             .isSuccess(true)
             .code(200)
             .message("모델 추천 성공")
