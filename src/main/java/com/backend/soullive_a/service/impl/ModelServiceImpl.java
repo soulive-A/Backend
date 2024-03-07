@@ -1,6 +1,6 @@
 package com.backend.soullive_a.service.impl;
 
-import com.backend.soullive_a.dto.request.ModelRequest;
+import com.backend.soullive_a.dto.response.ModelRecommendResponse;
 import com.backend.soullive_a.dto.response.ModelResponse;
 import com.backend.soullive_a.dto.response.RecentModelResponse;
 import com.backend.soullive_a.entity.Product;
@@ -61,6 +61,12 @@ public class ModelServiceImpl implements ModelService {
         return productModelRepository.getRecentModels(productId);
     }
 
+    @Override
+    @Transactional
+    public List<ModelRecommendResponse> getRecommendModel(){
+
+        return modelRepository.findAllRecommendModel();
+    }
     /**
      * 광고 상품 엔티티 생성
      * @param model
