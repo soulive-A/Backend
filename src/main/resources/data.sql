@@ -4,7 +4,7 @@ INSERT INTO soullive.user (user_id, password, phone_number) VALUES (1, 'password
 -- 모델
 INSERT INTO soullive.model (model_id, model_name, birth, age, job, info, agency, ai_rate, image_url)
 VALUES
-    (1, '김희애', '1967-04-23', '56세', '텔런트/영화배우', '', 'YG 엔터테인먼트', 4.0, 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/heeae.png.png'),
+    (1, '김희애', '1967-04-23', '56세', '텔런트/영화배우', '', 'YG 엔터테인먼트', 4.0, 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/heeae.png'),
     (2, '한지민', '1982-11-05', '41세', '배우', '', 'BH 엔터테인먼트', 3.0, 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/hanjimin.png'),
     (3, '김고은', '1991-07-02', '32세', '배우', '', 'BH 엔터테인먼트', 3.0, 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/kimgoeun.png'),
 
