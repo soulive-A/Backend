@@ -12,7 +12,7 @@ public interface ProductModelRepository extends JpaRepository<ProductModel, Long
     @Query("Select "
         + "new com.backend.soullive_a.dto.response.RecentModelResponse(m.id,m.imageUrl,m.modelName,m.aiRate) "
         + "From ProductModel p "
-        + "Left Join Model m On p.model.id = m.id "
+        + "Inner Join Model m On p.model.id = m.id "
         + "Where p.product.id = :productId "
         + "ORDER BY p.searchTime DESC")
     List<RecentModelResponse> getRecentModels(@Param("productId") Long productId);
