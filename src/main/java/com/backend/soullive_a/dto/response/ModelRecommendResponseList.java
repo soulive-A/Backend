@@ -10,8 +10,8 @@ public record ModelRecommendResponseList(
     List<ModelRecommendResponse> actors,
     @Schema(name = "singers", description = "모델 추천에서 가수 리스트")
     List<ModelRecommendResponse> singers,
-    @Schema(name = "idols", description = "모델 추천에서 아이돌 리스트")
-    List<ModelRecommendResponse> idols
+    @Schema(name = "youtuber", description = "모델 추천에서 유튜버 리스트")
+    List<ModelRecommendResponse> youtuber
 ) {
 
 }

@@ -69,17 +69,17 @@ public class ModelServiceImpl implements ModelService {
 
         List<ModelRecommendResponse> actors = new ArrayList<>();
         List<ModelRecommendResponse> singers = new ArrayList<>();
-        List<ModelRecommendResponse> idols = new ArrayList<>();
+        List<ModelRecommendResponse> youtuber = new ArrayList<>();
 
         modelRepository.findAllRecommendModel().stream()
             .forEach(response -> {
-                if(response.job().equals("배우")) // 배우인 경우
+                if(response.job().contains("배우")) // 배우인 경우
                     actors.add(response);
                 else if(response.job().equals("가수")) // 가수인 경우
                     singers.add(response);
-                else idols.add(response); // 아이돌인 경우
+                else youtuber.add(response); // 유튜버인 경우
             });
-        return new ModelRecommendResponseList(actors,singers,idols);
+        return new ModelRecommendResponseList(actors,singers,youtuber);
     }
     /**
      * 광고 상품 엔티티 생성
