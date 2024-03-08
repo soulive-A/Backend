@@ -64,14 +64,14 @@ public class ModelServiceImpl implements ModelService {
             aiComment = "김고은은 세련되고 사랑스러운 이미지로 LG 시그니처가 목표로 하는 세련되고 대중에게 친숙한 이미지와 적합합니다.";
         }
 
-        String scoreUrl="scoreUrl.png";
+        String scoreUrl="https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/hanjimin_modelFitness_score.png";
         if (productModel.getModel().getId() == 1) {
-            scoreUrl="희애scoreUrl.png";
+            scoreUrl="https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/hanjimin_modelFitness_score.png";
         }
         else if (productModel.getModel().getId() == 2) {
-            scoreUrl="한지민scoreUrl.png";
+            scoreUrl="https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/hanjimin_modelFitness_score.png";
         } else if (productModel.getModel().getId() == 3) {
-            scoreUrl="김고은scoreUrl.png";        }
+            scoreUrl="https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/hanjimin_modelFitness_score.png";        }
         modelFitnessRepository.save(
                 ModelFitness.builder()
                         .productModel(productModel)
