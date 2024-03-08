@@ -6,10 +6,12 @@ import com.backend.soullive_a.dto.response.RecentModelResponse;
 import com.backend.soullive_a.entity.Product;
 import com.backend.soullive_a.entity.model.Model;
 import com.backend.soullive_a.entity.model.ProductModel;
+import com.backend.soullive_a.entity.model.fitness.ModelFitness;
 import com.backend.soullive_a.exception.custom.NotFoundUserException;
 import com.backend.soullive_a.repository.ModelRepository;
 import com.backend.soullive_a.repository.ProductModelRepository;
 import com.backend.soullive_a.repository.ProductRepository;
+import com.backend.soullive_a.repository.model.fitness.ModelFitnessRepository;
 import com.backend.soullive_a.service.ModelService;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,14 +26,15 @@ public class ModelServiceImpl implements ModelService {
     private final ModelRepository modelRepository;
     private final ProductRepository productRepository;
     private final ProductModelRepository productModelRepository;
+    private final ModelFitnessRepository modelFitnessRepository;
 
     @Override
     @Transactional
     public ModelResponse getModel(String modelName,Long productId) {
         System.out.println(modelName);
         Model model = modelRepository.findByModelName(modelName)
-                .orElseThrow(() -> new NotFoundUserException());
-
+                .orElseThrow(() -> new NotFoundUserException("실페ㅐ"));
+        System.out.println(model.getModelName()+productId);
         //최근 조회 모델 데이터 업데이트
         updateRecentViewModel(model,productId);
 
@@ -50,6 +53,18 @@ public class ModelServiceImpl implements ModelService {
                 .build();
     }
 
+    private void createModelFitness( ProductModel productModel) {
+
+        modelFitnessRepository.save(
+                ModelFitness.builder()
+                        .productModel(productModel)
+                        .aiComment("ai comment입니다")
+                        .scoreUrl("점수 url입니다")
+                        .build()
+        );
+
+
+    }
 
 
     /**
@@ -77,12 +92,15 @@ public class ModelServiceImpl implements ModelService {
         Product product = productRepository.findById(productId)
             .orElseThrow(NotFoundUserException::new);
 
-        productModelRepository.save(
-            ProductModel.builder()
-                .model(model)
-                .product(product)
-                .searchTime(LocalDateTime.now())
-                .build()
+        ProductModel productModel = productModelRepository.save(
+                ProductModel.builder()
+                        .model(model)
+                        .product(product)
+                        .searchTime(LocalDateTime.now())
+                        .build()
         );
+
+        //모델 적합도 더미데이터 생성
+        createModelFitness(productModel);
     }
 }

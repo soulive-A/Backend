@@ -36,16 +36,19 @@ public class ModelFitnessServiceImpl implements ModelFitnessService {
     @Override
     public ModelFitnessResponse getModelFitness(ModelFitnessRequest request) {
         Model model = modelRepository.findByModelName(request.modelName())
-                .orElseThrow(() -> new NotFoundUserException());
+                .orElseThrow(() -> new NotFoundUserException("해당 Model을 찾을 수 없습니다"));
 
         Product product = productRepository.findById(request.productId())
-                .orElseThrow(() -> new NotFoundUserException()); //커스텀에러
+                .orElseThrow(() -> new NotFoundUserException("해당 Product를 찾을 수 없습니다")); //커스텀에러
 
         ProductModel productModel = productModelRepository.findByProductAndModel(product, model)
-                .orElseThrow(() -> new NotFoundUserException()); //커스텀에러
+                .orElseThrow(() -> new NotFoundUserException(
+                        String.format("product : %d, model : %s의 상품모델을 찾을 수 없습니다", product.getId(), model.getModelName())
+                        )
+                ); //커스텀에러
 
         ModelFitness modelFitness =  modelFitnessRepository.findById(productModel.getId())
-                .orElseThrow(() -> new NotFoundUserException()); //커스텀에러
+                .orElseThrow(() -> new NotFoundUserException("모델적합도를 찾을수없습니다")); //커스텀에러
 
         List<ModelImageKeyword> modelImageKeywords = modelImageKeywordRepository.findAllByModel(model);
         List<String> modelImageKeywordResponses = modelImageKeywords.stream()
@@ -65,8 +68,9 @@ public class ModelFitnessServiceImpl implements ModelFitnessService {
         return ModelFitnessResponse.builder()
                 .scoreUrl(modelFitness.getScoreUrl())
                 .aiComment(modelFitness.getAiComment())
-                .modelImageKeywordList(brandImageResponses)
-                .brandImageKeywordList(productImageResponses)
+                .modelImageKeywordList(modelImageKeywordResponses)
+                .brandImageKeywordList(brandImageResponses)
+                .productImageKeywordList(productImageResponses)
                 .build();
     }
 }
