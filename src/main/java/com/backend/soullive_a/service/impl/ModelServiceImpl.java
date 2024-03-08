@@ -33,7 +33,7 @@ public class ModelServiceImpl implements ModelService {
     public ModelResponse getModel(String modelName,Long productId) {
         System.out.println(modelName);
         Model model = modelRepository.findByModelName(modelName)
-                .orElseThrow(() -> new NotFoundUserException("실페ㅐ"));
+                .orElseThrow(() -> new NotFoundUserException());
         System.out.println(model.getModelName()+productId);
         //최근 조회 모델 데이터 업데이트
         updateRecentViewModel(model,productId);
@@ -54,12 +54,29 @@ public class ModelServiceImpl implements ModelService {
     }
 
     private void createModelFitness( ProductModel productModel) {
+        String aiComment="ai 한줄 평 준비 중 입니다.";
+        if (productModel.getModel().getId() == 1) {
+            aiComment = "김희애의 우아하고 고급스러운 이미지와 함께 가족적인 이미지가 어우러져 lg 시그니처 브랜드의 프리미엄적인 이미지와 고품질 제품에 잘 어울릴 것이라고 판단 됩니다.";
+        }
+        else if (productModel.getModel().getId() == 2) {
+            aiComment = "한지민은 깨끗하고 바른 이미지로 LG시그니처와 어울리지만 현재 목표하는 프리미엄 이미지를 강조하기에는 다소 아쉬운 모델입니다.";
+        } else if (productModel.getModel().getId() == 3) {
+            aiComment = "김고은은 세련되고 사랑스러운 이미지로 LG 시그니처가 목표로 하는 세련되고 대중에게 친숙한 이미지와 적합합니다.";
+        }
 
+        String scoreUrl="scoreUrl.png";
+        if (productModel.getModel().getId() == 1) {
+            scoreUrl="희애scoreUrl.png";
+        }
+        else if (productModel.getModel().getId() == 2) {
+            scoreUrl="한지민scoreUrl.png";
+        } else if (productModel.getModel().getId() == 3) {
+            scoreUrl="김고은scoreUrl.png";        }
         modelFitnessRepository.save(
                 ModelFitness.builder()
                         .productModel(productModel)
-                        .aiComment("ai comment입니다")
-                        .scoreUrl("점수 url입니다")
+                        .aiComment(aiComment)
+                        .scoreUrl(scoreUrl)
                         .build()
         );
 
