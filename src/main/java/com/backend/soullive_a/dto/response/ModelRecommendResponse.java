@@ -8,7 +8,7 @@ public record ModelRecommendResponse(
     String imageUrl,
     @Schema(name = "name", example = "김희애", description = "모델 이름입니다.")
     String name,
-    @Schema(name = "job", example = "텔런트/영화배우", description = "모델 직업(구분자)입니다.")
+    @Schema(name = "job", example = "배우", description = "모델 직업(구분자)입니다.")
     String job
 ) {
 

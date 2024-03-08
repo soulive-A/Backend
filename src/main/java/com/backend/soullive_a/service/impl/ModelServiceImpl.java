@@ -1,6 +1,7 @@
 package com.backend.soullive_a.service.impl;
 
 import com.backend.soullive_a.dto.response.ModelRecommendResponse;
+import com.backend.soullive_a.dto.response.ModelRecommendResponseList;
 import com.backend.soullive_a.dto.response.ModelResponse;
 import com.backend.soullive_a.dto.response.RecentModelResponse;
 import com.backend.soullive_a.entity.Product;
@@ -12,6 +13,7 @@ import com.backend.soullive_a.repository.ProductModelRepository;
 import com.backend.soullive_a.repository.ProductRepository;
 import com.backend.soullive_a.service.ModelService;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -63,9 +65,21 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     @Transactional
-    public List<ModelRecommendResponse> getRecommendModel(){
+    public ModelRecommendResponseList getRecommendModel(){
 
-        return modelRepository.findAllRecommendModel();
+        List<ModelRecommendResponse> actors = new ArrayList<>();
+        List<ModelRecommendResponse> singers = new ArrayList<>();
+        List<ModelRecommendResponse> idols = new ArrayList<>();
+
+        modelRepository.findAllRecommendModel().stream()
+            .forEach(response -> {
+                if(response.job().equals("배우")) // 배우인 경우
+                    actors.add(response);
+                else if(response.job().equals("가수")) // 가수인 경우
+                    singers.add(response);
+                else idols.add(response); // 아이돌인 경우
+            });
+        return new ModelRecommendResponseList(actors,singers,idols);
     }
     /**
      * 광고 상품 엔티티 생성
