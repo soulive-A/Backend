@@ -22,5 +22,7 @@ public interface ProductModelRepository extends JpaRepository<ProductModel, Long
         + "ORDER BY p.searchTime DESC")
     List<RecentModelResponse> getRecentModels(@Param("productId") Long productId);
 
-    Optional<ProductModel> findByProductAndModel(Product product, Model model);
+//    Optional<ProductModel> findByProductAndModel(Product product, Model model);
+    ProductModel findTopByProductAndModelOrderByIdDesc(Product product, Model model);
+
 }

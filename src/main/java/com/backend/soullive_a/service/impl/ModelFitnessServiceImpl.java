@@ -41,11 +41,8 @@ public class ModelFitnessServiceImpl implements ModelFitnessService {
         Product product = productRepository.findById(request.productId())
                 .orElseThrow(() -> new NotFoundUserException("해당 Product를 찾을 수 없습니다")); //커스텀에러
 
-        ProductModel productModel = productModelRepository.findByProductAndModel(product, model)
-                .orElseThrow(() -> new NotFoundUserException(
-                        String.format("product : %d, model : %s의 상품모델을 찾을 수 없습니다", product.getId(), model.getModelName())
-                        )
-                ); //커스텀에러
+        ProductModel productModel = productModelRepository.findTopByProductAndModelOrderByIdDesc(product, model);
+
 
         ModelFitness modelFitness =  modelFitnessRepository.findById(productModel.getId())
                 .orElseThrow(() -> new NotFoundUserException("모델적합도를 찾을수없습니다")); //커스텀에러
