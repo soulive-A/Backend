@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ModelFitnessRepository extends JpaRepository<ModelFitness, Long> {
 
-//    public ModelFitness findById
 }

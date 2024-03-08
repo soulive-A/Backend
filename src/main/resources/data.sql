@@ -150,7 +150,3 @@ VALUES
     (6, 3, '톱스타뉴스', '2023-08-19', '"수지도 5만 원인데”...배우 김고은,  팬미팅 가격 고가 논란', 'https://www.topstarnews.net/news/articleView.html?idxno=773836'),
     (7, 3, '국제신문', '2019-05-05', '김고은 측 ''인터뷰 논란 악플 경고글'' 돌연 삭제... 이유는?', 'https://sports.donga.com/article/all/20200429/100861465/2');
 
--- 모델 적합도
--- INSERT INTO  soullive.model_fitness (model_fitenss_id, product_model_id, ai_comment, score_url)
--- VALUES
---     (1, 1, '김희애의 우아하고 고급스러운 이미지와 함께 가족적인 이미지가 어우러져 lg 시그니처 브랜드의 프리미엄적인 이미지와 고품질 제품에 잘 어울릴 것이라고 판단 됩니다.', 'image.png');
