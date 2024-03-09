@@ -136,7 +136,7 @@ values
 INSERT INTO  soullive.model_issue (model_issue_id, model_id,  score_url,  ai_comment,crime)
 VALUES
     (1, 1, 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/heeae_badissue.png', '2020년에 처음 알려진 김희애 남편의 횔령 혐의 피소가 있지만 사건의 전말이 정확하지 않고 김희애 배우 본인의 문제가 아니었기에 논란이 크지 않았습니다.', 0),
-    (2, 2, 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/gimin_badissue.png', '한지민은 데뷔 이래로 큰 논란이나 사건이 없었으며 대중들에게 줄곧 바른 이미지를 유지해왔습니다.', 0),
+    (2, 2, 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/jimin_badissue.png', '한지민은 데뷔 이래로 큰 논란이나 사건이 없었으며 대중들에게 줄곧 바른 이미지를 유지해왔습니다.', 0),
     (3, 3, 'https://soullive-bucket.s3.ap-northeast-2.amazonaws.com/goeun_badissue.png', '김고은은 범죄이력이 없으며 두드러지는 사건사고가 없었기 때문에 부정적인 이슈를 일으킬 가능성이 낮습니다.', 0);
 
 --모델 부정이슈 뉴스
